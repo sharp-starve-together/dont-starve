@@ -8,5 +8,6 @@ namespace tower_defense
     {
         void Move();
         event Action<IMonster> Kill;
+        int damage { get; }
     }
 }
