@@ -7,6 +7,6 @@ namespace tower_defense
     public interface IBullet
     {
         void Move();
-        event IMonster Kill{ }
+        event Action<IMonster> Kill;
     }
 }
