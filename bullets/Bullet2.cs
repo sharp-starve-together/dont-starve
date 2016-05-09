@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Drawing;
 
-namespace tower_defense.bullets
+namespace tower_defense_domain.bullets
 {
     class Bullet2 : AbstractBullet
     {
-        public override event Action<IMonster> Kill;
-        Bullet2(IMonster target, Point location)
-            : base(target, location)
+        public Bullet2(IEnemy target, Point location, int damage)
+            : base(target, location, damage)
         { }
     }
 }

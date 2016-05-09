@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace tower_defense
+namespace tower_defense_domain
 {
     public interface IBullet
     {
         void Move();
-        event Action<IMonster> Kill;
+        event Action<IEnemy> Kill;
         int damage { get; }
     }
 }

@@ -4,15 +4,17 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using tower_defense_domain.bullets;
 
-namespace tower_defense.towers
+namespace tower_defense_domain.towers
 {
     class Tower1 : AbstractTower
     {
-        public override IBullet Shoot(IEnumerable<IMonster> monsters)
+        protected override IBullet createBullet(IEnemy enemy)
         {
-            throw new NotImplementedException();
+            return new Bullet1(enemy, location, 3);
         }
+
         Tower1(Point location, int range, int atackSpeed)
             :base(location,range,atackSpeed)
         { }

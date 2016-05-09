@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace tower_defense
+namespace tower_defense_domain
 {
     public interface ITower
     {
-        IBullet Shoot(IEnumerable<IMonster> monsters);
+        IBullet Shoot(IEnumerable<IEnemy> monsters);
     }
 }

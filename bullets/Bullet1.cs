@@ -5,13 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace tower_defense.bullets
+namespace tower_defense_domain.bullets
 {
     class Bullet1 : AbstractBullet
     {
-        public override event Action<IMonster> Kill;
-        Bullet1(IMonster target, Point location)
-            :base(target, location)
+        public Bullet1(IEnemy target, Point location, int damage)
+            : base(target, location, damage)
         { }
     }
 }

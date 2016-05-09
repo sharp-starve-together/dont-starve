@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
+using tower_defense_domain.bullets;
 
-namespace tower_defense.towers
+namespace tower_defense_domain.towers
 {
     class Tower2 : AbstractTower
     {
-        public override IBullet Shoot(IEnumerable<IMonster> monsters)
-        {
-            throw new NotImplementedException();
-        }
         Tower2(Point location, int range, int atackSpeed)
             : base(location, range, atackSpeed)
         { }
+
+        protected override IBullet createBullet(IEnemy enemy)
+        {
+            return new Bullet2(enemy, location, 4);
+        }
     }
 }
