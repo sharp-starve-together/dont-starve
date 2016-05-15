@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace tower_defense_domain
+﻿namespace tower_defense_domain
 {
     public interface IBullet
     {
-        void Move();
-        event Action<IEnemy> Kill;
+        State Move();
+        void DealDamage();
         int damage { get; }
     }
 }

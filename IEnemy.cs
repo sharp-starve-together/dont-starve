@@ -10,6 +10,7 @@ namespace tower_defense_domain
         int hp { get; }
         Point location { get; }
         IEnumerator<Point> path { get; }
-        void Move();
+        State Move();
+        void TakeDamage(int damage);
     }
 }

@@ -11,9 +11,11 @@ namespace tower_defense_domain
         private int countMonsters;
         private int level;
         private Random randomaizer;
+        private readonly Base target;
 
-        public Wave(IEnumerable<Point> path, int level,int countMonsters)
+        public Wave(IEnumerable<Point> path, int level,int countMonsters, Base target)
         {
+            this.target = target;
             this.level = level;
             this.path = path;
             this.countMonsters = countMonsters;
@@ -30,8 +32,8 @@ namespace tower_defense_domain
             if (countMonsters > 0)
                 switch (randomaizer.Next(1,2))
                 {
-                    case 1: { yield return new Enemy1(1, 1, 3, path); break; }
-                    case 2: { yield return new Enemy2(5, 2, 1, path); break; }
+                    case 1: { yield return new Enemy1(1, 1, 3, path, target); break; }
+                    case 2: { yield return new Enemy2(5, 2, 1, path, target); break; }
                 }
             else
                 yield return null;

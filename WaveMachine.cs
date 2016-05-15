@@ -13,15 +13,17 @@ namespace tower_defense_domain
         private int level = 1;
         private int countMonsters = 20;
         private Wave wave;
+        private Base target;
 
-        WaveMachine(IEnumerable<Point> path)
+        WaveMachine(IEnumerable<Point> path, Base target)
         {
+            this.target = target;
             this.path = path;
         }
 
         void CreateWave()
         {
-            wave =  new Wave(path, level, countMonsters);
+            wave =  new Wave(path, level, countMonsters, target);
             level++;
             countMonsters += 20;
         }

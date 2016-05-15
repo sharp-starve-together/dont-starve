@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using tower_defense_domain.bullets;
 
 namespace tower_defense_domain.towers
@@ -12,6 +13,11 @@ namespace tower_defense_domain.towers
         protected override IBullet createBullet(IEnemy enemy)
         {
             return new Bullet2(enemy, location, 4);
+        }
+
+        protected override void SetTimerReload()
+        {
+            timerReload = 5;
         }
     }
 }

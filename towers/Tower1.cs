@@ -15,6 +15,11 @@ namespace tower_defense_domain.towers
             return new Bullet1(enemy, location, 3);
         }
 
+        protected override void SetTimerReload()
+        {
+            timerReload = 10;
+        }
+
         Tower1(Point location, int range, int atackSpeed)
             :base(location,range,atackSpeed)
         { }
