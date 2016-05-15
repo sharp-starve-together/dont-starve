@@ -8,11 +8,11 @@ using tower_defense_domain.bullets;
 
 namespace tower_defense_domain.towers
 {
-    class Tower1 : AbstractTower
+    public class Tower1 : AbstractTower
     {
         protected override IBullet createBullet(IEnemy enemy)
         {
-            return new Bullet1(enemy, location, 3);
+            return new Bullet1(enemy, Location, 3);
         }
 
         protected override void SetTimerReload()
@@ -20,8 +20,8 @@ namespace tower_defense_domain.towers
             timerReload = 10;
         }
 
-        Tower1(Point location, int range, int atackSpeed)
-            :base(location,range,atackSpeed)
+        public Tower1(Point location, int range, int atackSpeed)
+            : base(location,range,atackSpeed)
         { }
     }
 }

@@ -4,6 +4,6 @@
     {
         State Move();
         void DealDamage();
-        int damage { get; }
+        int Damage { get; }
     }
 }

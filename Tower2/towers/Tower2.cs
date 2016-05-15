@@ -12,7 +12,7 @@ namespace tower_defense_domain.towers
 
         protected override IBullet createBullet(IEnemy enemy)
         {
-            return new Bullet2(enemy, location, 4);
+            return new Bullet2(enemy, Location, 4);
         }
 
         protected override void SetTimerReload()
