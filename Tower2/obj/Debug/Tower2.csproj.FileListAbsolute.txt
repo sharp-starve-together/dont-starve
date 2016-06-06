@@ -1,1 +1,10 @@
 G:\MustDo\urfu\CourseTwo\OOP\Together\Tower2\Tower2\bin\Debug\Tower2.exe.config
+C:\Users\Света\Desktop\tower-defense\Tower2\bin\Debug\Tower2.exe.config
+C:\Users\Света\Desktop\tower-defense\Tower2\bin\Debug\Tower2.exe
+C:\Users\Света\Desktop\tower-defense\Tower2\bin\Debug\Tower2.pdb
+C:\Users\Света\Desktop\tower-defense\Tower2\obj\Debug\Tower2.csprojResolveAssemblyReference.cache
+C:\Users\Света\Desktop\tower-defense\Tower2\obj\Debug\Tower2.Properties.Resources.resources
+C:\Users\Света\Desktop\tower-defense\Tower2\obj\Debug\Tower2.csproj.GenerateResource.Cache
+C:\Users\Света\Desktop\tower-defense\Tower2\obj\Debug\Tower2.exe
+C:\Users\Света\Desktop\tower-defense\Tower2\obj\Debug\Tower2.pdb
+C:\Users\Света\Desktop\tower-defense\Tower2\obj\Debug\Tower2.TowerDefenseForm.resources

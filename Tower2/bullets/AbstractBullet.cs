@@ -1,32 +1,35 @@
 ﻿using System;
 using System.Drawing;
+using Tower2;
 
 namespace tower_defense_domain.bullets
 {
     public abstract class AbstractBullet : IBullet
     {
         private readonly IEnemy target;
-        private Point location;
+        public Point Location { get; set; }
         public int Damage { get; set; }
         private int speed = 50;
+
+        public string NameImage { get { return "Bullet.png"; } set { } }
 
         public AbstractBullet(IEnemy target, Point location, int damage)
         {
             this.target = target;
-            this.location = location;
+            Location = location;
             Damage = damage;
         }
 
         public State Move()
         {
-            var vector = new Point(target.Location.X - location.X, target.Location.Y - location.Y);
+            var vector = new Point(target.Location.X - Location.X, target.Location.Y - Location.Y);
             var angle = Math.Atan2(vector.Y, vector.X);
-            location = new Point
+            Location = new Point
             {
-                X = location.X + (int)Math.Round(speed * Math.Cos(angle)),
-                Y = location.Y + (int)Math.Round(speed * Math.Sin(angle))
+                X = Location.X + (int)Math.Round(speed * Math.Cos(angle)),
+                Y = Location.Y + (int)Math.Round(speed * Math.Sin(angle))
             };
-            if (location.X == target.Location.X && location.Y == target.Location.Y)
+            if (Location.X == target.Location.X && Location.Y == target.Location.Y)
             {
                 DealDamage();
                 return State.die;

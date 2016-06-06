@@ -4,14 +4,14 @@
     <Position X="6.25" Y="2.5" Width="1.5" />
     <AssociationLine Name="target" Type="tower_defense_domain.IEnemy" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="7.75" Y="3.929" />
-        <Point X="8.125" Y="3.929" />
+        <Point X="7.75" Y="4.035" />
+        <Point X="8.125" Y="4.035" />
         <Point X="8.125" Y="0.781" />
         <Point X="9.75" Y="0.781" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAQAAIAAgAAAIAAAAAACAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAASAAIAAAAAAIAIAAAAAAAAAAQCAAAAAAAAAAAA=</HashCode>
       <FileName>bullets\AbstractBullet.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -35,18 +35,10 @@
   </Class>
   <Class Name="tower_defense_domain.enemies.AbstractEnemy">
     <Position X="11.5" Y="0.5" Width="1.5" />
-    <AssociationLine Name="target" Type="tower_defense_domain.Base">
-      <MemberNameLabel ManuallyPlaced="true">
-        <Position X="0.631" Y="0.123" />
-      </MemberNameLabel>
-    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAACIAAgAABIAACAAACAAAAAQAAAABAgAAAAAA=</HashCode>
+      <HashCode>AAAQAACACIAAAAoBIAIAAAABQAAAAACAAAAAgAAAAEA=</HashCode>
       <FileName>enemies\AbstractEnemy.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Field Name="target" />
-    </ShowAsAssociation>
     <Lollipop Orientation="Left" Position="0.412" />
   </Class>
   <Class Name="tower_defense_domain.enemies.Enemy1" Collapsed="true">
@@ -66,7 +58,7 @@
   <Class Name="tower_defense_domain.towers.AbstractTower">
     <Position X="2.25" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>FAAAAAAIAAAEAAABAEAEAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>FAAAAAAAAAAECAABAEIAABAABAAAAACAAAAAAAAAAAA=</HashCode>
       <FileName>towers\AbstractTower.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -75,8 +67,8 @@
     <Position X="3.25" Y="6.25" Width="1.5" />
     <InheritanceLine Type="tower_defense_domain.towers.AbstractTower" ManuallyRouted="true" FixedFromPoint="true">
       <Path>
-        <Point X="3.75" Y="5.276" />
-        <Point X="4.25" Y="5.276" />
+        <Point X="3.75" Y="5.552" />
+        <Point X="4.25" Y="5.552" />
         <Point X="4.25" Y="6.25" />
       </Path>
     </InheritanceLine>
@@ -89,8 +81,8 @@
     <Position X="0.75" Y="6.25" Width="1.5" />
     <InheritanceLine Type="tower_defense_domain.towers.AbstractTower" ManuallyRouted="true" FixedFromPoint="true">
       <Path>
-        <Point X="2.25" Y="5.276" />
-        <Point X="1.5" Y="5.276" />
+        <Point X="2.25" Y="5.552" />
+        <Point X="1.5" Y="5.552" />
         <Point X="1.5" Y="6.25" />
       </Path>
     </InheritanceLine>
@@ -109,23 +101,15 @@
   </Class>
   <Class Name="tower_defense_domain.Wave">
     <Position X="4" Y="0.5" Width="1.5" />
-    <AssociationLine Name="target" Type="tower_defense_domain.Base">
-      <MemberNameLabel ManuallyPlaced="true">
-        <Position X="2.61" Y="0.133" />
-      </MemberNameLabel>
-    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAIAACAgAAAAEAAAgAAAAAAAACAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAIAACAgAAAAEAAAgAAAAAAAAAAAA=</HashCode>
       <FileName>Wave.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Field Name="target" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="tower_defense_domain.WaveMachine">
     <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAAAAAAAIgACAAAAAAEAAAAAAAgAAAACAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAACIgACAwAAAAEAAAAAAAgAAAQAAAA=</HashCode>
       <FileName>WaveMachine.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -135,7 +119,7 @@
   <Interface Name="tower_defense_domain.IEnemy" Collapsed="true">
     <Position X="9.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAIAAgAAAAAACAAACAAAAAQAAAABAgAAAAAA=</HashCode>
+      <HashCode>AAAQAACAAIAAAAoAAAAAAAABQAAAAAAAAAAAgAAAAAA=</HashCode>
       <FileName>IEnemy.cs</FileName>
     </TypeIdentifier>
   </Interface>

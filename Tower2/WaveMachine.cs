@@ -23,6 +23,7 @@ namespace tower_defense_domain
         {
             this.target = target;
             this.path = path;
+            wave = new Wave(path, level, target);
         }
 
         public void CreateWave()

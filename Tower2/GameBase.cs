@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Drawing;
+using Tower2;
 
 namespace tower_defense_domain
 {
-    public class GameBase
+    public class GameBase : IGameObject
     {
+        public string NameImage { get { return "Base.jpg"; } set { } }
         public int HP { get; set; }
         public Point Location { get; set; }
 

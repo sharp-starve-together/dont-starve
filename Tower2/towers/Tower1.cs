@@ -21,7 +21,7 @@ namespace tower_defense_domain.towers
         }
 
         public Tower1(Point location, int range, int atackSpeed)
-            : base(location,range,atackSpeed)
+            : base(location, range, atackSpeed)
         { }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
+using Tower2;
 
 namespace tower_defense_domain.towers
 {
@@ -11,6 +12,11 @@ namespace tower_defense_domain.towers
         public int AtackSpeed { get; set; }
         public Point Location { get; set; }
         protected int timerReload;
+        public int Cost { get; set; }
+
+        public string NameImage { get { return "Tower1.png"; } set { } }
+        public void Upgreate()
+        { }
 
         public AbstractTower(Point location, int range, int atackSpeed)
         {
