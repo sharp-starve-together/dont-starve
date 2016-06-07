@@ -17,7 +17,7 @@ namespace tower_defense_domain.towers
 
         protected override void SetTimerReload()
         {
-            timerReload = 5;
+            timerReload = 20;
         }
     }
 }

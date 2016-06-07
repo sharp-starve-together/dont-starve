@@ -37,8 +37,10 @@ namespace tower_defense_domain.towers
             {
                 var vector = new Point(enemy.Location.X - Location.X, enemy.Location.Y - Location.Y);
                 if (length(vector) < Range)
+                {
                     SetTimerReload();
                     return createBullet(enemy);
+                }
             }
             return null;
         }

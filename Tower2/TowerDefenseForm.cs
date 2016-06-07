@@ -34,7 +34,10 @@ namespace Tower2
 
             var imagesDirectory = new DirectoryInfo("images");
             foreach (var e in imagesDirectory.GetFiles("*"))
-                Bitmaps[e.Name] = (Bitmap)Bitmap.FromFile(e.FullName);
+                if (e.Name.IndexOf(".db") > 0)
+                    continue;
+                else
+                    Bitmaps[e.Name] = (Bitmap)Bitmap.FromFile(e.FullName);
             BackgroundImage = Bitmaps["Ground.png"];
 
             timer = new Timer();
@@ -92,7 +95,7 @@ namespace Tower2
             base.OnMouseClick(e);
             if (isStateBuilding && SelectedTypeTower != null)
             {
-                var args = new object[3]{e.Location, 1, 1};
+                var args = new object[3]{e.Location, 100, 1};
                 Core.AddTower(System.Type.GetType("tower_defense_domain.towers.Tower1"), args);
             }
         }

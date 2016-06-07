@@ -17,7 +17,7 @@ namespace tower_defense_domain.towers
 
         protected override void SetTimerReload()
         {
-            timerReload = 10;
+            timerReload = 50;
         }
 
         public Tower1(Point location, int range, int atackSpeed)

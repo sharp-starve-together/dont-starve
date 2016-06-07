@@ -29,12 +29,17 @@ namespace tower_defense_domain.bullets
                 X = Location.X + (int)Math.Round(speed * Math.Cos(angle)),
                 Y = Location.Y + (int)Math.Round(speed * Math.Sin(angle))
             };
-            if (Location.X == target.Location.X && Location.Y == target.Location.Y)
+            if (NearEnemy(angle))
             {
                 DealDamage();
                 return State.die;
             }
             return State.go;
+        }
+
+        private bool NearEnemy(double angle)
+        {
+            return Math.Abs(Location.X - target.Location.X) <=speed/2 && Math.Abs(Location.Y - target.Location.Y) <= speed/2;
         }
 
         public void DealDamage()
