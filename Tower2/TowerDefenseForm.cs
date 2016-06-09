@@ -38,7 +38,7 @@ namespace Tower2
                     continue;
                 else
                     Bitmaps[e.Name] = (Bitmap)Bitmap.FromFile(e.FullName);
-
+            BackgroundImage = Bitmaps["Ground.png"];
             timer = new Timer();
             timer.Interval = 100;
             timer.Tick += TimerTick;
@@ -77,11 +77,22 @@ namespace Tower2
 
         public void DrawImagesPath(Graphics graphics)
         {
-            foreach (Point point in Core.Path)
+            var nameImageFile = "Path.png";
+            for (var i = 0; i < Core.Path.Count - 1; i++)
             {
-                var nameImageFile = "Path.png";
-                var size = new Rectangle(point.X, point.Y, WorldSize.Width, WorldSize.Height);
-                DrawImage(graphics, size, nameImageFile);
+                var point = Core.Path[i];
+                var nextPoint = Core.Path[i + 1];
+                int x = point.X;
+                int y = point.Y;
+                while (Math.Abs(x - nextPoint.X) > WorldSize.Width/2 || Math.Abs(y - nextPoint.Y) > WorldSize.Height/2)
+                {
+                    var size = new Rectangle(x, y, WorldSize.Width, WorldSize.Height);
+                    DrawImage(graphics, size, nameImageFile);
+                    var vector = new Point(nextPoint.X - x, nextPoint.Y - y);
+                    var angle = Math.Atan2(vector.Y, vector.X);
+                    x += (int)Math.Round(WorldSize.Width * Math.Cos(angle))/2;
+                    y += (int)Math.Round(WorldSize.Height * Math.Sin(angle))/2;
+                }
             }
         }
 

@@ -36,8 +36,9 @@ namespace tower_defense_domain
             Path = new List<Point>() {
                 new Point(50,50),
                 new Point(200, 200),
-                new Point(400, 400),
-                new Point(600, 600)
+                new Point(400, 200),
+                new Point(400, 600),
+                new Point(600,600)
             };
             Base = new GameBase(Path[Path.Count - 1], 1000);
             ScoreToFinish = 400;
