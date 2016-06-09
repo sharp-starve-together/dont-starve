@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 using Tower2;
 
@@ -6,18 +7,21 @@ namespace tower_defense_domain.bullets
 {
     public abstract class AbstractBullet : IBullet
     {
+        public int Speed { get; set; }
+        public int Damage { get; set; }
+        public string NameImage { get; set; }
+
         private readonly IEnemy target;
         public Point Location { get; set; }
-        public int Damage { get; set; }
-        private int speed = 50;
 
-        public string NameImage { get { return "Bullet.png"; } set { } }
 
-        public AbstractBullet(IEnemy target, Point location, int damage)
+        public AbstractBullet(IEnemy target, Point location)
         {
             this.target = target;
             Location = location;
-            Damage = damage;
+            NameImage = "Bullet.png";
+            Speed = 50;
+            Damage = 1;
         }
 
         public State Move()
@@ -26,8 +30,8 @@ namespace tower_defense_domain.bullets
             var angle = Math.Atan2(vector.Y, vector.X);
             Location = new Point
             {
-                X = Location.X + (int)Math.Round(speed * Math.Cos(angle)),
-                Y = Location.Y + (int)Math.Round(speed * Math.Sin(angle))
+                X = Location.X + (int)Math.Round(Speed * Math.Cos(angle)),
+                Y = Location.Y + (int)Math.Round(Speed * Math.Sin(angle))
             };
             if (NearEnemy(angle))
             {
@@ -39,7 +43,8 @@ namespace tower_defense_domain.bullets
 
         private bool NearEnemy(double angle)
         {
-            return Math.Abs(Location.X - target.Location.X) <=speed/2 && Math.Abs(Location.Y - target.Location.Y) <= speed/2;
+            return Math.Abs(Location.X - target.Location.X) <= Speed / 2 
+                   && Math.Abs(Location.Y - target.Location.Y) <= Speed / 2;
         }
 
         public void DealDamage()

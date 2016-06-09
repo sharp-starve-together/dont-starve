@@ -23,13 +23,13 @@ namespace tower_defense_domain
         public int Money { get; set; }
 
         public Action<bool> Finished;
-        public Action<int> UpdateMoney;
-        public Action<int> UpdateScore;
+        public Action UpdateMoney;
         public List<IGameObject> GameObject;
 
-        public Core(Action<bool> finished, Action<int> updateMoney, Action<int> updateScore)
+        public Core(Action<bool> finished, Action updateMoney)
         {
             Score = 0;
+            Money = 30;
             enemies = new List<IEnemy>();
             bullets = new List<IBullet>();
             towers = new List<ITower>();
@@ -44,20 +44,18 @@ namespace tower_defense_domain
             WaveGenerator = new WaveMachine(Path, Base);
             Finished = finished;
             UpdateMoney = updateMoney;
-            UpdateScore = updateScore;
             GameObject = new List<IGameObject> { Base };
         }
 
         public void AddMoney(int count)
         {
             Money += count;
-            UpdateMoney(Money);
+            UpdateMoney();
         }
 
         public void AddScore(int count)
         {
             Score += count;
-            UpdateScore(Score);
             if (Money >= ScoreToFinish)
                 Finished(true);
         }
@@ -87,6 +85,7 @@ namespace tower_defense_domain
                         if (result == State.die)
                         {
                             AddMoney(enemies[i].Money);
+                            AddScore(enemies[i].Score);
                         }
                         enemies.Remove(enemies[i]);
                     }

@@ -7,27 +7,22 @@ namespace tower_defense_domain.enemies
 {
     public abstract class AbstractEnemy : IEnemy
     {
-        public int Damage { get; private set; }
+        public int Damage { get; set; }
         public Point Location { get; set; }
-        public int HP { get; private set; }
-        public int Speed { get; private set; }
-        public int Money { get; private set; }
-        public int Score { get; private set; }
+        public int HP { get; set; }
+        public int Speed { get; set; }
+        public int Money { get; set; }
+        public int Score { get; set; }
         public IEnumerator<Point> Path { get; private set; }
         private Point nextPosition { get; set; }
         private GameBase target;
-        private const int RadiusToNextPoint = 10;
+        private const int radiusToNextPoint = 10;
 
-        public string NameImage { get { return "Enemy.png"; } set { } }
+        public string NameImage { get; set; }
 
-        public AbstractEnemy(int hp, int damage, int speed, int money, int score, IEnumerable<Point> path, GameBase target)
+        public AbstractEnemy(IEnumerable<Point> path, GameBase target)
         {
             this.target = target;
-            Damage = damage;
-            HP = hp;
-            Speed = speed;
-            Money = money;
-            Score = score;
             Path = path.GetEnumerator();
             Path.MoveNext();
             Location = new Point
@@ -37,6 +32,12 @@ namespace tower_defense_domain.enemies
             };
             Path.MoveNext();
             nextPosition = Path.Current;
+            NameImage = "Enemy.png";
+            Damage = 1;
+            HP = 1;
+            Speed = 1;
+            Money = 10;
+            Score = 5;
         }
 
         public State Move()
@@ -44,6 +45,7 @@ namespace tower_defense_domain.enemies
             if (HP < 0)
                 return State.die;
             if (CheckReachingNextPosition())
+            {
                 if (Path.MoveNext())
                     nextPosition = Path.Current;
                 else
@@ -51,6 +53,7 @@ namespace tower_defense_domain.enemies
                     target.TakeDamage(Damage);
                     return State.finish;
                 }
+            }
             var vector = new Point(nextPosition.X - Location.X, nextPosition.Y - Location.Y);
             var angle = Math.Atan2(vector.Y, vector.X);
             Location = new Point
@@ -63,8 +66,8 @@ namespace tower_defense_domain.enemies
 
         private bool CheckReachingNextPosition()
         {
-            return Math.Abs(nextPosition.X - Location.X) <= RadiusToNextPoint &&
-                Math.Abs(nextPosition.Y - Location.Y) <= RadiusToNextPoint;
+            return Math.Abs(nextPosition.X - Location.X) <= radiusToNextPoint 
+                   && Math.Abs(nextPosition.Y - Location.Y) <= radiusToNextPoint;
         }
 
         public void TakeDamage(int damage)

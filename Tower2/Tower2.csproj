@@ -48,12 +48,12 @@
   <ItemGroup>
     <Compile Include="GameBase.cs" />
     <Compile Include="bullets\AbstractBullet.cs" />
-    <Compile Include="bullets\Bullet1.cs" />
-    <Compile Include="bullets\Bullet2.cs" />
+    <Compile Include="bullets\MagicBullet.cs" />
+    <Compile Include="bullets\ArrowBullet.cs" />
     <Compile Include="Core.cs" />
     <Compile Include="enemies\AbstractEnemy.cs" />
-    <Compile Include="enemies\Enemy1.cs" />
-    <Compile Include="enemies\Enemy2.cs" />
+    <Compile Include="enemies\GhostEnemy.cs" />
+    <Compile Include="enemies\TrollEnemy.cs" />
     <Compile Include="IBullet.cs" />
     <Compile Include="IEnemy.cs" />
     <Compile Include="IGameObject.cs" />
@@ -68,8 +68,8 @@
       <DependentUpon>TowerDefenseForm.cs</DependentUpon>
     </Compile>
     <Compile Include="towers\AbstractTower.cs" />
-    <Compile Include="towers\Tower1.cs" />
-    <Compile Include="towers\Tower2.cs" />
+    <Compile Include="towers\MagesTower.cs" />
+    <Compile Include="towers\ArcherTower.cs" />
     <Compile Include="Wave.cs" />
     <Compile Include="WaveMachine.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">

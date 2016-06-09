@@ -8,3 +8,12 @@ C:\Users\Света\Desktop\tower-defense\Tower2\obj\Debug\Tower2.csproj.Generat
 C:\Users\Света\Desktop\tower-defense\Tower2\obj\Debug\Tower2.exe
 C:\Users\Света\Desktop\tower-defense\Tower2\obj\Debug\Tower2.pdb
 C:\Users\Света\Desktop\tower-defense\Tower2\obj\Debug\Tower2.TowerDefenseForm.resources
+g:\MustDo\urfu\CourseTwo\OOP\NewTower\tower-defense\Tower2\bin\Debug\Tower2.exe.config
+g:\MustDo\urfu\CourseTwo\OOP\NewTower\tower-defense\Tower2\bin\Debug\Tower2.exe
+g:\MustDo\urfu\CourseTwo\OOP\NewTower\tower-defense\Tower2\bin\Debug\Tower2.pdb
+g:\MustDo\urfu\CourseTwo\OOP\NewTower\tower-defense\Tower2\obj\Debug\Tower2.csprojResolveAssemblyReference.cache
+g:\MustDo\urfu\CourseTwo\OOP\NewTower\tower-defense\Tower2\obj\Debug\Tower2.Properties.Resources.resources
+g:\MustDo\urfu\CourseTwo\OOP\NewTower\tower-defense\Tower2\obj\Debug\Tower2.TowerDefenseForm.resources
+g:\MustDo\urfu\CourseTwo\OOP\NewTower\tower-defense\Tower2\obj\Debug\Tower2.csproj.GenerateResource.Cache
+g:\MustDo\urfu\CourseTwo\OOP\NewTower\tower-defense\Tower2\obj\Debug\Tower2.exe
+g:\MustDo\urfu\CourseTwo\OOP\NewTower\tower-defense\Tower2\obj\Debug\Tower2.pdb

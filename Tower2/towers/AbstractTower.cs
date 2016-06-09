@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Text;
 using Tower2;
@@ -8,47 +9,51 @@ namespace tower_defense_domain.towers
 {
     public abstract class AbstractTower : ITower
     {
+        public Point Location { get; set; }
+        protected int TimerReload;
+        public int Cost { get; set; }
         public int Range { get; set; }
         public int AtackSpeed { get; set; }
-        public Point Location { get; set; }
-        protected int timerReload;
-        public int Cost { get; set; }
+        public string NameImage { get; set; }
 
-        public string NameImage { get { return "Tower1.png"; } set { } }
-        public void Upgreate()
-        { }
+        protected abstract IBullet СreateBullet(IEnemy enemy);
+        protected abstract void SetTimerReload();
 
-        public AbstractTower(Point location, int range, int atackSpeed)
+        public AbstractTower(Point location)
         {
             Location = location;
-            AtackSpeed = atackSpeed;
-            Range = range;
-            timerReload = 0;
+            NameImage = "ArcherTower.png";
+            AtackSpeed = 1;
+            Range = 100;
+            TimerReload = 0;
         }
 
+        // сделать с out параметром !?
         public IBullet TryShoot(IEnumerable<IEnemy> enemies)
         {
-            if (timerReload > 0)
+            if (TimerReload > 0)
             {
-                timerReload -= 1;
+                TimerReload -= 1;
                 return null;
             }
             foreach (var enemy in enemies)
             {
                 var vector = new Point(enemy.Location.X - Location.X, enemy.Location.Y - Location.Y);
-                if (length(vector) < Range)
+                if (Length(vector) < Range)
                 {
                     SetTimerReload();
-                    return createBullet(enemy);
+                    return СreateBullet(enemy);
                 }
             }
             return null;
         }
 
-        protected abstract IBullet createBullet(IEnemy enemy);
-        protected abstract void SetTimerReload();
+        public void Upgrade()
+        {
+            // реализовать улучшение зданий
+        }
 
-        private int length(Point vector)
+        private int Length(Point vector)
         {
             return (int)Math.Round(Math.Sqrt(vector.X * vector.X + vector.Y * vector.Y));
         }

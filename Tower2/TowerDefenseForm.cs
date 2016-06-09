@@ -17,17 +17,17 @@ namespace Tower2
     {
         public Core Core;
         private Timer timer;
-        private string FontName = "TowerDefense";
+        private string fontName = "TowerDefense";
         private Font font;
         private Tuple<int, int> SelectedTypeTower;
         private bool isStateBuilding = false;
         public Size WorldSize { get; set; }
         Dictionary<string, Bitmap> Bitmaps = new Dictionary<string, Bitmap>();
 
-        public TowerDefenseForm(Core core, Size clientSize, Size imageSize)
+        public TowerDefenseForm(Size clientSize, Size imageSize)
         {
-            font = new Font(FontName, 20);
-            Core = core;
+            font = new Font(fontName, 20);
+            Core = new Core(DrawFinishedWinOrDie, UpdateMoney);
             ClientSize = clientSize;
             WorldSize = imageSize;
             DoubleBuffered = true;
@@ -38,30 +38,30 @@ namespace Tower2
                     continue;
                 else
                     Bitmaps[e.Name] = (Bitmap)Bitmap.FromFile(e.FullName);
-            BackgroundImage = Bitmaps["Ground.png"];
 
             timer = new Timer();
             timer.Interval = 100;
             timer.Tick += TimerTick;
             timer.Start();
         }
+
         void TimerTick(object sender, EventArgs args)
         {
             Core.Update(1);
             Invalidate();
         }
+
         protected override void OnPaint(PaintEventArgs e)
         {
             var graphics = e.Graphics;
 
-            //e.Graphics.FillRectangle(Brushes.Black, 0, 0, ClientSize.Width, ClientSize.Height);
             e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
 
             DrawImagesPath(graphics);
             DrawGameObjects(graphics);
 
-            graphics.DrawString(Core.Score.ToString() + "Score", font, Brushes.Black, new Point(10, 5));
-            graphics.DrawString(Core.Money.ToString() + "Money", font, Brushes.Black, new Point(10, 30));
+            graphics.DrawString("Score: " + Core.Score.ToString(), font, Brushes.Black, new Point(200, 5));
+            graphics.DrawString("Money: " + Core.Money.ToString(), font, Brushes.Black, new Point(200, 30));
             CreateMenu();
         }
 
@@ -84,42 +84,133 @@ namespace Tower2
                 DrawImage(graphics, size, nameImageFile);
             }
         }
+
         public void DrawImage(Graphics graphics, Rectangle size, string name)
         {
             var compressionSize = size;
             var image = Bitmaps[name];
             graphics.DrawImage(image, compressionSize);
         }
+
         protected override void OnMouseClick(MouseEventArgs e)
         {
             base.OnMouseClick(e);
+
             if (isStateBuilding && SelectedTypeTower != null)
             {
-                var args = new object[3]{e.Location, 100, 1};
-                Core.AddTower(System.Type.GetType("tower_defense_domain.towers.Tower1"), args);
+                var args = new object[] { e.Location };
+                var nameTower = GetNameTower(SelectedTypeTower.Item1);
+                var fullName = "tower_defense_domain.towers." + nameTower;
+                Core.AddTower(System.Type.GetType(fullName), args);
+            }
+            isStateBuilding = false;
+        }
+
+        private string GetNameTower(int number)
+        {
+            switch(number)
+            {
+                case 0:
+                    return "ArcherTower";
+                case 1:
+                    return "MagesTower";
+                default:
+                    return "ArcherTower";
             }
         }
+
+        public void DrawFinishedWinOrDie(bool isWin)
+        {
+            // соответствующий гуй для:
+            // победы (isWin == true)
+            // и поражения (isWin == false)
+        }
+
+        public void UpdateMoney()
+        {
+            SetEnabledOrDisenabledTowersColor();
+        }
+
+        private void SetEnabledOrDisenabledTowersColor()
+        {
+            foreach (Control control in Controls)
+                if (control.GetType() == typeof(Button) && (string)control.Tag == "Tower")
+                {
+                    var button = (Button)control;
+                    var cost = int.Parse(button.Text);
+                    button.ForeColor = (Core.Money < cost) ? Color.Red : Color.Blue;
+                }
+        }
+
         public void CreateMenu()
         {
-            var ButtonCreateTower = CreateButton(new Point(ClientSize.Width * 8 / 10, ClientSize.Height / 3), "Create", Font, "Create1.png", new Size(64, 32));
-            ButtonCreateTower.Click += (sender, args) =>
-            {
-                isStateBuilding = !isStateBuilding;
-            };
-            var ButtonUpdateTower = CreateButton(new Point(ClientSize.Width * 9 / 10, ClientSize.Height / 3), "Update", Font, "Update.png", new Size(64, 32));
-            ButtonUpdateTower.Click += (sender, args) =>
-            {
+            var towerWidth = 64;
+            var border = 20;
+            var posWidth = ClientSize.Width - 2 * towerWidth - 2 * border;
 
-            };
-            var ButtonTower1 = CreateButton(new Point(ClientSize.Width * 8 / 10, ClientSize.Height / 5), "", Font, "Tower1.png", new Size(32, 32));
-            ButtonTower1.Click += (sender, args) =>
+            var ButtonUpdateTower = CreateButton(
+                new Point(posWidth + 3 * border / 2 + towerWidth, towerWidth),
+                "Update",
+                Font,
+                "Update.png",
+                new Size(towerWidth, 32));
+            ButtonUpdateTower.Click += (sender, args) =>
                 {
-                    SelectedTypeTower = new Tuple<int,int>(1, 1);
+
                 };
-            Controls.Add(ButtonTower1);
-            Controls.Add(ButtonCreateTower);
             Controls.Add(ButtonUpdateTower);
+
+            for (int i = 0; i < 2; i++)
+            {
+                var tower = GetTmpTower(i);
+                CreateTowerButton(
+                    new Point(posWidth + i * (border + towerWidth), 2 * towerWidth),
+                    tower.NameImage,
+                    tower.Cost,
+                    i,
+                    towerWidth);
+            }
         }
+
+        public ITower GetTmpTower(int number)
+        {
+            var nameTower = GetNameTower(number);
+            var fullName = "tower_defense_domain.towers." + nameTower;
+            var pp = System.Type.GetType(fullName);
+            var obj = Activator.CreateInstance(pp, new object[] { new Point(0, 0) });
+            return (ITower)obj;
+        }
+
+        public void CreateTowerButton(Point pos, string name, int cost, int number, int width)
+        {
+            var tower = CreateButton(
+                pos,
+                cost.ToString(),
+                Font,
+                name,
+                new Size(width, width + 50));
+            tower.ForeColor = Color.Blue;
+            tower.Font = new Font(Font.Name, 14, FontStyle.Bold);
+            tower.BackgroundImageLayout = ImageLayout.Zoom;
+            tower.Tag = "Tower";
+            tower.Click += (sender, args) =>
+            {
+                SelectedTypeTower = new Tuple<int, int>(number, 1);
+                isStateBuilding = false;
+                var clicked = (Button)sender;
+                var neededCost = int.Parse(clicked.Text);
+                if (Core.Money < neededCost)
+                    clicked.ForeColor = Color.Red;
+                else
+                {
+                    clicked.ForeColor = Color.Blue;
+                    Core.AddMoney(-neededCost);
+                    isStateBuilding = true;
+                }
+            };
+            Controls.Add(tower);
+        }
+
         public Button CreateButton(Point position, string text, Font font, string image, Size buttonSize)
         {
             var button = new Button();
@@ -132,6 +223,7 @@ namespace Tower2
 
             return button;
         }
+
         public Control SetStyle(Control control, Point position, string text, Font font, string image, Color backColor, Size controlSize)
         {
             control.BackColor = backColor;

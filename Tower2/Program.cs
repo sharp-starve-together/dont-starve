@@ -20,7 +20,7 @@ namespace Tower2
             Application.SetCompatibleTextRenderingDefault(false);
             var borderSpace = new Size(1000, 700);
             var imageSize = new Size(32, 32);
-            Application.Run(new TowerDefenseForm(new Core(x => x = false, y => y += 1, z => z += 10), borderSpace, imageSize));
+            Application.Run(new TowerDefenseForm(borderSpace, imageSize));
         }
     }
 }

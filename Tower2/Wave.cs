@@ -22,10 +22,13 @@ namespace tower_defense_domain
 
         public IEnemy CreateEnemy()
         {
-            switch (randomaizer.Next(1, 2))
+            // как узнать количество наших классов с помощью рефлексии?
+
+            // и да, в randomaizer верхняя граница не учитывается
+            switch (randomaizer.Next(1, 3))
             {
-                case 1: return new Enemy1(1, 1, 3, 10, 5, path, target);
-                case 2: return new Enemy2(5, 2, 1, 10, 5, path, target);
+                case 1: return new GhostEnemy(path, target);
+                case 2: return new TrollEnemy(path, target);
                 default: return null;
             }
         }
