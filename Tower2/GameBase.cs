@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Drawing;
-using Tower2;
+using Tower;
 
-namespace tower_defense_domain
+namespace TowerDefenseDomain
 {
     public class GameBase : IGameObject
     {

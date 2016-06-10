@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Drawing;
 
-namespace tower_defense_domain.bullets
+namespace TowerDefenseDomain
 {
     public class MagicBullet : AbstractBullet
     {
-        public MagicBullet(IEnemy target, Point location)
+        public MagicBullet(BaseEnemy target, Point location)
             : base(target, location)
         {
             NameImage = "MagicBullet.png";

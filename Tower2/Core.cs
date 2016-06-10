@@ -1,51 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Tower2;
+using Tower;
 
-namespace tower_defense_domain
+namespace TowerDefenseDomain
 {
     public class Core
     {
         public List<Point> Path { get; set; }
         public GameBase Base { get; set; }
         public WaveMachine WaveGenerator { get; set; }
-
-        public List<ITower> towers { get; set; }
-        public List<IEnemy> enemies { get; set; }
-        public List<IBullet> bullets { get; set; }
+        public Storage Storage { get; set; }
 
         public int Score { get; set; }
         public int ScoreToFinish { get; set; }
         public int Money { get; set; }
 
-        public Action<bool> Finished;
-        public Action UpdateMoney;
-        public List<IGameObject> GameObject;
+        public Action<bool> Finished { get; set; }
+        public Action UpdateMoney { get; set; }
 
         public Core(Action<bool> finished, Action updateMoney)
         {
             Score = 0;
             Money = 30;
-            enemies = new List<IEnemy>();
-            bullets = new List<IBullet>();
-            towers = new List<ITower>();
             Path = new List<Point>() {
-                new Point(50,50),
+                new Point(0, 200),
                 new Point(200, 200),
                 new Point(400, 200),
                 new Point(400, 600),
-                new Point(600,600)
+                new Point(600, 600)
             };
             Base = new GameBase(Path[Path.Count - 1], 1000);
             ScoreToFinish = 400;
             WaveGenerator = new WaveMachine(Path, Base);
+            Storage = new Storage(Base, AddScore, AddMoney);
             Finished = finished;
             UpdateMoney = updateMoney;
-            GameObject = new List<IGameObject> { Base };
         }
 
         public void AddMoney(int count)
@@ -63,52 +53,21 @@ namespace tower_defense_domain
 
         public void Update(double deltaTime)
         {
-            if (towers != null)
-                foreach (var tower in towers)
-                {
-                    var bullet = tower.TryShoot(enemies);
-                    if (bullet != null)
-                        bullets.Add(bullet);
-                }
-            if (bullets != null)
-                for (var i = 0; i < bullets.Count(); i++)
-                {
-                    var action = bullets[i].Move();
-                    if (action == State.die)
-                        bullets.Remove(bullets[i]);
-                }
-            if (enemies != null)
-                for (var i = 0; i < enemies.Count; i++ )
-                {
-                    var result = enemies[i].Move();
-                    if (result != State.go)
-                    {
-                        if (result == State.die)
-                        {
-                            AddMoney(enemies[i].Money);
-                            AddScore(enemies[i].Score);
-                        }
-                        enemies.Remove(enemies[i]);
-                    }
-                }
+            Storage.Update(deltaTime);
 
             var newEnemy = WaveGenerator.GetNewEnemy(deltaTime);
             if (newEnemy != null)
-                enemies.Add(newEnemy);
+                Storage.Enemies.Add(newEnemy);
 
             if (!Base.IsAlive())
                 Finished(false);
-            GameObject.Clear();
-            GameObject.AddRange(enemies);
-            GameObject.AddRange(bullets);
-            GameObject.AddRange(towers);
-            GameObject.Add(Base);
+            Storage.GameObject.Add(Base);
         }
 
         public void AddTower(Type tower, object[] args)
         {
             var obj = Activator.CreateInstance(tower, args);
-            towers.Add((ITower)obj);
+            Storage.Towers.Add((AbstractTower)obj);
         }
     }
 }

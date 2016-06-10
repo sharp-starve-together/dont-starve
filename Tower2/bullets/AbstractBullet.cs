@@ -1,21 +1,20 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing;
-using Tower2;
+using Tower;
 
-namespace tower_defense_domain.bullets
+namespace TowerDefenseDomain
 {
-    public abstract class AbstractBullet : IBullet
+    public abstract class AbstractBullet : IGameObject
     {
         public int Speed { get; set; }
         public int Damage { get; set; }
         public string NameImage { get; set; }
-
-        private readonly IEnemy target;
         public Point Location { get; set; }
 
+        private readonly BaseEnemy target;
 
-        public AbstractBullet(IEnemy target, Point location)
+        public AbstractBullet(BaseEnemy target, Point location)
         {
             this.target = target;
             Location = location;
@@ -36,9 +35,9 @@ namespace tower_defense_domain.bullets
             if (NearEnemy(angle))
             {
                 DealDamage();
-                return State.die;
+                return State.Dead;
             }
-            return State.go;
+            return State.Moved;
         }
 
         private bool NearEnemy(double angle)

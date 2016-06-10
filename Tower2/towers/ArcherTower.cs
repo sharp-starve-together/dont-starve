@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Drawing;
-using tower_defense_domain.bullets;
 
-namespace tower_defense_domain.towers
+namespace TowerDefenseDomain
 {
     public class ArcherTower : AbstractTower
     {
@@ -15,7 +14,7 @@ namespace tower_defense_domain.towers
             NameImage = "ArcherTower.png";
         }
 
-        protected override IBullet СreateBullet(IEnemy enemy)
+        protected override AbstractBullet СreateBullet(BaseEnemy enemy)
         {
             return new ArrowBullet(enemy, Location);
         }

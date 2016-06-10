@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
 
-namespace tower_defense_domain.enemies
+namespace TowerDefenseDomain
 {
-    public class TrollEnemy : AbstractEnemy
+    public class TrollEnemy : BaseEnemy
     {
         public TrollEnemy(IEnumerable<Point> path, GameBase target)
             : base(path, target)

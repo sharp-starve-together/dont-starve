@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using tower_defense_domain.bullets;
 
-namespace tower_defense_domain.towers
+namespace TowerDefenseDomain
 {
     public class MagesTower : AbstractTower
     {
@@ -19,7 +17,7 @@ namespace tower_defense_domain.towers
             NameImage = "MagesTower.png";
         }
 
-        protected override IBullet СreateBullet(IEnemy enemy)
+        protected override AbstractBullet СreateBullet(BaseEnemy enemy)
         {
             return new MagicBullet(enemy, Location);
         }

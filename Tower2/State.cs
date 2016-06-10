@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace tower_defense_domain
+namespace TowerDefenseDomain
 {
     public enum State
     {
-        go,
-        finish,
-        die
+        Moved,
+        Finish,
+        Dead
     }
 }

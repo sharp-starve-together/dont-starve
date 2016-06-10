@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Tower2.Properties
+namespace Tower.Properties
 {
 
 

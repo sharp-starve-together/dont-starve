@@ -8,10 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using tower_defense_domain;
-using tower_defense_domain.towers;
+using TowerDefenseDomain;
 
-namespace Tower2
+namespace Tower
 {
     public partial class TowerDefenseForm : Form
     {
@@ -60,14 +59,14 @@ namespace Tower2
             DrawImagesPath(graphics);
             DrawGameObjects(graphics);
 
-            graphics.DrawString("Score: " + Core.Score.ToString(), font, Brushes.Black, new Point(200, 5));
-            graphics.DrawString("Money: " + Core.Money.ToString(), font, Brushes.Black, new Point(200, 30));
+            graphics.DrawString("Score: " + Core.Score.ToString(), font, Brushes.Yellow, new Point(200, 5));
+            graphics.DrawString("Money: " + Core.Money.ToString(), font, Brushes.Yellow, new Point(200, 30));
             CreateMenu();
         }
 
         public void DrawGameObjects(Graphics graphics)
         {
-            foreach(var obj in Core.GameObject)
+            foreach(var obj in Core.Storage.GameObject)
             {
                 var nameImageFile = obj.NameImage;
                 var size = new Rectangle(obj.Location.X, obj.Location.Y, WorldSize.Width, WorldSize.Height);
@@ -111,7 +110,7 @@ namespace Tower2
             {
                 var args = new object[] { e.Location };
                 var nameTower = GetNameTower(SelectedTypeTower.Item1);
-                var fullName = "tower_defense_domain.towers." + nameTower;
+                var fullName = "TowerDefenseDomain." + nameTower;
                 Core.AddTower(System.Type.GetType(fullName), args);
             }
             isStateBuilding = false;
@@ -132,9 +131,7 @@ namespace Tower2
 
         public void DrawFinishedWinOrDie(bool isWin)
         {
-            // соответствующий гуй для:
-            // победы (isWin == true)
-            // и поражения (isWin == false)
+
         }
 
         public void UpdateMoney()
@@ -161,7 +158,7 @@ namespace Tower2
 
             var ButtonUpdateTower = CreateButton(
                 new Point(posWidth + 3 * border / 2 + towerWidth, towerWidth),
-                "Update",
+                "Upgrade",
                 Font,
                 "Update.png",
                 new Size(towerWidth, 32));
@@ -183,13 +180,13 @@ namespace Tower2
             }
         }
 
-        public ITower GetTmpTower(int number)
+        public AbstractTower GetTmpTower(int number)
         {
             var nameTower = GetNameTower(number);
-            var fullName = "tower_defense_domain.towers." + nameTower;
+            var fullName = "TowerDefenseDomain." + nameTower;
             var pp = System.Type.GetType(fullName);
             var obj = Activator.CreateInstance(pp, new object[] { new Point(0, 0) });
-            return (ITower)obj;
+            return (AbstractTower)obj;
         }
 
         public void CreateTowerButton(Point pos, string name, int cost, int number, int width)

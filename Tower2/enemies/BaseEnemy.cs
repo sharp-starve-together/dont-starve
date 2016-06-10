@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using Tower2;
+using Tower;
 
-namespace tower_defense_domain.enemies
+namespace TowerDefenseDomain
 {
-    public abstract class AbstractEnemy : IEnemy
+    public class BaseEnemy : IGameObject
     {
         public int Damage { get; set; }
         public Point Location { get; set; }
@@ -20,7 +20,7 @@ namespace tower_defense_domain.enemies
 
         public string NameImage { get; set; }
 
-        public AbstractEnemy(IEnumerable<Point> path, GameBase target)
+        public BaseEnemy(IEnumerable<Point> path, GameBase target)
         {
             this.target = target;
             Path = path.GetEnumerator();
@@ -40,10 +40,14 @@ namespace tower_defense_domain.enemies
             Score = 5;
         }
 
-        public State Move()
+        public bool Move(Action<int> AddScore, Action<int> AddMoney)
         {
             if (HP < 0)
-                return State.die;
+            {
+                AddMoney(Money);
+                AddScore(Score);
+                return false;
+            }
             if (CheckReachingNextPosition())
             {
                 if (Path.MoveNext())
@@ -51,7 +55,7 @@ namespace tower_defense_domain.enemies
                 else
                 {
                     target.TakeDamage(Damage);
-                    return State.finish;
+                    return false;
                 }
             }
             var vector = new Point(nextPosition.X - Location.X, nextPosition.Y - Location.Y);
@@ -61,7 +65,7 @@ namespace tower_defense_domain.enemies
                 X = Location.X + (int)Math.Round(Speed * Math.Cos(angle)),
                 Y = Location.Y + (int)Math.Round(Speed * Math.Sin(angle))
             };
-            return State.go;
+            return true;
         }
 
         private bool CheckReachingNextPosition()

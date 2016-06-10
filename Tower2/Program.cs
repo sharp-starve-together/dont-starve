@@ -4,9 +4,9 @@ using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using tower_defense_domain;
+using TowerDefenseDomain;
 
-namespace Tower2
+namespace Tower
 {
     static class Program
     {

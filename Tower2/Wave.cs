@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using tower_defense_domain.enemies;
 
-namespace tower_defense_domain
+namespace TowerDefenseDomain
 {
     public class Wave
     {
@@ -20,7 +19,7 @@ namespace tower_defense_domain
             randomaizer = new Random();
         }
 
-        public IEnemy CreateEnemy()
+        public BaseEnemy CreateEnemy()
         {
             // как узнать количество наших классов с помощью рефлексии?
 

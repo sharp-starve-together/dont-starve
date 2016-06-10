@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Drawing;
 
-namespace tower_defense_domain.bullets
+namespace TowerDefenseDomain
 {
     public class ArrowBullet : AbstractBullet
     {
-        public ArrowBullet(IEnemy target, Point location)
+        public ArrowBullet(BaseEnemy target, Point location)
             : base(target, location)
         {
             NameImage = "ArrowBullet.png";

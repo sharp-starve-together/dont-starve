@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
 
-namespace tower_defense_domain.enemies
+namespace TowerDefenseDomain
 {
-    public class GhostEnemy : AbstractEnemy
+    public class GhostEnemy : BaseEnemy
     {
         public GhostEnemy(IEnumerable<Point> path, GameBase target)
             : base(path, target)

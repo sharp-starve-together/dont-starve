@@ -4,9 +4,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using tower_defense_domain.enemies;
 
-namespace tower_defense_domain
+namespace TowerDefenseDomain
 {
     public class WaveMachine
     {
@@ -32,7 +31,7 @@ namespace tower_defense_domain
             level++;
         }
 
-        public IEnemy GetNewEnemy(double deltaTime)
+        public BaseEnemy GetNewEnemy(double deltaTime)
         {
             if (TimerCooldown > 0)
                 TimerCooldown -= deltaTime;

@@ -11,9 +11,7 @@ C:\Users\Света\Desktop\tower-defense\Tower2\obj\Debug\Tower2.TowerDefenseFo
 g:\MustDo\urfu\CourseTwo\OOP\NewTower\tower-defense\Tower2\bin\Debug\Tower2.exe.config
 g:\MustDo\urfu\CourseTwo\OOP\NewTower\tower-defense\Tower2\bin\Debug\Tower2.exe
 g:\MustDo\urfu\CourseTwo\OOP\NewTower\tower-defense\Tower2\bin\Debug\Tower2.pdb
-g:\MustDo\urfu\CourseTwo\OOP\NewTower\tower-defense\Tower2\obj\Debug\Tower2.csprojResolveAssemblyReference.cache
 g:\MustDo\urfu\CourseTwo\OOP\NewTower\tower-defense\Tower2\obj\Debug\Tower2.Properties.Resources.resources
-g:\MustDo\urfu\CourseTwo\OOP\NewTower\tower-defense\Tower2\obj\Debug\Tower2.TowerDefenseForm.resources
 g:\MustDo\urfu\CourseTwo\OOP\NewTower\tower-defense\Tower2\obj\Debug\Tower2.csproj.GenerateResource.Cache
 g:\MustDo\urfu\CourseTwo\OOP\NewTower\tower-defense\Tower2\obj\Debug\Tower2.exe
 g:\MustDo\urfu\CourseTwo\OOP\NewTower\tower-defense\Tower2\obj\Debug\Tower2.pdb
@@ -26,3 +24,4 @@ C:\Users\Аdmin\Documents\GitHub\dont-starve\Tower2\obj\Debug\Tower2.csprojResol
 C:\Users\Аdmin\Documents\GitHub\dont-starve\Tower2\obj\Debug\Tower2.Properties.Resources.resources
 C:\Users\Аdmin\Documents\GitHub\dont-starve\Tower2\obj\Debug\Tower2.TowerDefenseForm.resources
 C:\Users\Аdmin\Documents\GitHub\dont-starve\Tower2\obj\Debug\Tower2.csproj.GenerateResource.Cache
+G:\MustDo\urfu\CourseTwo\OOP\NewTower\tower-defense\Tower2\obj\Debug\Tower.TowerDefenseForm.resources

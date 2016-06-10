@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Text;
-using Tower2;
+using Tower;
 
-namespace tower_defense_domain.towers
+namespace TowerDefenseDomain
 {
-    public abstract class AbstractTower : ITower
+    public abstract class AbstractTower : IGameObject
     {
         public Point Location { get; set; }
         protected int TimerReload;
@@ -16,7 +16,7 @@ namespace tower_defense_domain.towers
         public int AtackSpeed { get; set; }
         public string NameImage { get; set; }
 
-        protected abstract IBullet СreateBullet(IEnemy enemy);
+        protected abstract AbstractBullet СreateBullet(BaseEnemy enemy);
         protected abstract void SetTimerReload();
 
         public AbstractTower(Point location)
@@ -28,8 +28,7 @@ namespace tower_defense_domain.towers
             TimerReload = 0;
         }
 
-        // сделать с out параметром !?
-        public IBullet TryShoot(IEnumerable<IEnemy> enemies)
+        public AbstractBullet TryShoot(IEnumerable<BaseEnemy> enemies)
         {
             if (TimerReload > 0)
             {
@@ -50,7 +49,7 @@ namespace tower_defense_domain.towers
 
         public void Upgrade()
         {
-            // реализовать улучшение зданий
+
         }
 
         private int Length(Point vector)

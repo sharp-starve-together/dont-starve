@@ -1,0 +1,8 @@
+G:\MustDo\urfu\CourseTwo\OOP\NewTower\tower-defense\Tower2\bin\Debug\Tower2.exe.config
+G:\MustDo\urfu\CourseTwo\OOP\NewTower\tower-defense\Tower2\bin\Debug\Tower2.exe
+G:\MustDo\urfu\CourseTwo\OOP\NewTower\tower-defense\Tower2\bin\Debug\Tower2.pdb
+G:\MustDo\urfu\CourseTwo\OOP\NewTower\tower-defense\Tower2\obj\Debug\Tower2.Properties.Resources.resources
+G:\MustDo\urfu\CourseTwo\OOP\NewTower\tower-defense\Tower2\obj\Debug\Tower.TowerDefenseForm.resources
+G:\MustDo\urfu\CourseTwo\OOP\NewTower\tower-defense\Tower2\obj\Debug\Tower.csproj.GenerateResource.Cache
+G:\MustDo\urfu\CourseTwo\OOP\NewTower\tower-defense\Tower2\obj\Debug\Tower2.exe
+G:\MustDo\urfu\CourseTwo\OOP\NewTower\tower-defense\Tower2\obj\Debug\Tower2.pdb
